@@ -11,4 +11,4 @@ if last_digit > 5:
 elif last_digit == 0:
     print("0")
 else:
-    print("les that 6 an not 0")
+    print("less than 6 an not 0")
