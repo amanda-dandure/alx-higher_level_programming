@@ -2,7 +2,7 @@
 """ Defining a file writing function """
 
 
-def append_file(filename="", text=""):
+def append_write(filename="", text=""):
     """ Appending a str to the end of a UTF8 text file
 
     Args:
