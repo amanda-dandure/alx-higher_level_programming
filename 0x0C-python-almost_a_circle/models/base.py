@@ -1,51 +1,51 @@
 #!/usr/bin/python3
 
-"""Defines a base model class."""
+""" Defining the Base Model Class """
 import json
 import csv
 import turtle
 
 
 class Base:
-    """Base model.
+    """ Base Model
 
-    This Represents the "base" for all other classes in project 0x0C*.
+    Represents the "base" for all the other classes in project 0x0C
 
     Private Class Attributes:
-        __nb_object (int): Number of instantiated Bases.
+        __nb_object (int): number of instantiated bases
     """
 
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """ Initialize a new Base.
+        """Initializing a new base
 
         Args:
-            id (int): The identity of the new Base.
+            id (int): This is the identity of the new base
         """
         if id is not None:
             self.id = id
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
-
+    
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Return the JSON serialization of a list of dicts.
+        """ Returns the JSON serialization of a list of dicts
 
         Args:
-            list_dictionaries (list): A list of dictionaries.
+            list_dictionaries (list): This is a list of dicts.
         """
         if list_dictionaries is None or list_dictionaries == []:
             return "[]"
         return json.dumps(list_dictionaries)
-
+    
     @classmethod
     def save_to_file(cls, list_objs):
-        """Write the JSON serialization of a list of objects to a file.
+        """ Writing JSON serialization of a list of obj to a file
 
         Args:
-            list_objs (list): A list of inherited Base instances.
+            list_objs (list): This is a list of inherited base instances
         """
         filename = cls.__name__ + ".json"
         with open(filename, "w") as jsonfile:
@@ -54,27 +54,27 @@ class Base:
             else:
                 list_dicts = [o.to_dictionary() for o in list_objs]
                 jsonfile.write(Base.to_json_string(list_dicts))
-
+    
     @staticmethod
     def from_json_string(json_string):
-        """Return the deserialization of a JSON string.
+        """ Returns deserialization of a JSON str
 
         Args:
-            json_string (str): A JSON str representation of a list of dicts.
+            json_string (str): This is a JSON str representation of a list of dicts
         Returns:
-            If json_string is None or empty - an empty list.
-            Otherwise - the Python list represented by json_string.
+            If json_string is None/Empty - [an empty list]
+            Otherwise - [the Python list represented by json_string]
         """
         if json_string is None or json_string == "[]":
             return []
         return json.loads(json_string)
-
+    
     @classmethod
     def create(cls, **dictionary):
-        """Return a class instantied from a dictionary of attributes.
+        """ Returns a class instance from a dict of attr
 
         Args:
-            **dictionary (dict): Key/value pairs of attributes to initialize.
+            **dictionary (dict): Key/Value pairs of attr to be initialized
         """
         if dictionary and dictionary != {}:
             if cls.__name__ == "Rectangle":
@@ -83,16 +83,16 @@ class Base:
                 new = cls(1)
             new.update(**dictionary)
             return new
-
+        
     @classmethod
     def load_from_file(cls):
-        """Return a list of classes instantiated from a file of JSON strings.
+        """ Returns a list of class instances from a file of JSON str
 
-        Reads from `<cls.__name__>.json`.
+        Reading from `<cls.__name__>.json`.
 
         Returns:
-            If the file does not exist - an empty list.
-            Otherwise - a list of instantiated classes.
+            If the file does not exist - [an empty list]
+            Otherwise - [a list of class instances]
         """
         filename = str(cls.__name__) + ".json"
         try:
@@ -101,13 +101,13 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
-
+        
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """Write the CSV serialization of a list of objects to a file.
+        """ Writing the CSV serialization of a list of obj to a file
 
         Args:
-            list_objs (list): A list of inherited Base instances.
+            list_objs (list): This is a list of inherited base instances
         """
         filename = cls.__name__ + ".csv"
         with open(filename, "w", newline="") as csvfile:
@@ -124,13 +124,13 @@ class Base:
 
     @classmethod
     def load_from_file_csv(cls):
-        """Return a list of classes instantiated from a CSV file.
+        """ Return a list of class instances from a CSV file
 
-        Reads from `<cls.__name__>.csv`.
+        Reading from `<cls.__name__>.csv`.
 
         Returns:
-            If the file does not exist - an empty list.
-            Otherwise - a list of instantiated classes.
+            If the file does not exist - [an empty list]
+            Otherwise - [a list of instantiated classes]
         """
         filename = cls.__name__ + ".csv"
         try:
@@ -145,14 +145,14 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
-
+    
     @staticmethod
     def draw(list_rectangles, list_squares):
-        """Draw Rectangles and Squares using the turtle module.
+        """ Drawing rectangles and squares using the turtle module
 
         Args:
-            list_rectangles (list): A list of Rectangle objects to draw.
-            list_squares (list): A list of Square objects to draw.
+            list_rectangles (list): This is a list of rectangle obj to draw
+            list_squares (list): This is a list of square objects to draw
         """
         turt = turtle.Turtle()
         turt.screen.bgcolor("#b7312c")
@@ -165,7 +165,7 @@ class Base:
             turt.up()
             turt.goto(rect.x, rect.y)
             turt.down()
-            for i in range(2):
+            for p in range(2):
                 turt.forward(rect.width)
                 turt.left(90)
                 turt.forward(rect.height)
@@ -178,7 +178,7 @@ class Base:
             turt.up()
             turt.goto(sq.x, sq.y)
             turt.down()
-            for i in range(2):
+            for p in range(2):
                 turt.forward(sq.width)
                 turt.left(90)
                 turt.forward(sq.height)
@@ -186,4 +186,5 @@ class Base:
             turt.hideturtle()
 
         turtle.exitonclick()
+
 
