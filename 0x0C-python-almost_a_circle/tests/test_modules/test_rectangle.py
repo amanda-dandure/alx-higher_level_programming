@@ -2,17 +2,17 @@
 """ Defining unittest for the models/rectangle.py
 
 Unittest classes:
-    testRectangle_instantiation: Line 23 - 109
-    testRectangle_width: Line 111 - 184
-    testRectangle_height: Line 186 - 255
-    testRectangle_x: Line 257 - 326
-    testRectangle_y: Line 328 - 393
-    testRectangle_order_of_initialization: Line 395 - 420
-    testRectangle_area: Line 422 - 442
-    TestRectangle_stdout: Line 445 - 526
-    TestRectangle_update_args: Line 528 - 663
-    testRectangle_update_kwargs: Line 665 - 774 
-    testRectangle_to_dictionary: Line 776 - 793
+    testRectangle_instantiation: Line 23 - 110
+    testRectangle_width: Line 113 - 186
+    testRectangle_height: Line 189 - 259
+    testRectangle_x: Line 261 - 330
+    testRectangle_y: Line 333 - 398
+    testRectangle_order_of_initialization: Line 401 - 426
+    testRectangle_area: Line 429 - 448
+    TestRectangle_stdout: Line 452 - 534
+    TestRectangle_update_args: Line 537 - 672
+    testRectangle_update_kwargs: Line 675 - 784
+    testRectangle_to_dictionary: Line 787 - 804
 """
 import io
 import sys
@@ -109,6 +109,7 @@ class testRectangle_instantiation(unittest.TestCase):
         r.y = 10
         self.assertEqual(10, r.y)
 
+
 class testRectangle_width(unittest.TestCase):
     """ Unittest to test initialization of the rectangle width attr """
 
@@ -184,6 +185,7 @@ class testRectangle_width(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             Rectangle(0, 2)
 
+
 class testRectangle_height(unittest.TestCase):
     """ Unittest to test initialization of the rectangle height attr """
 
@@ -254,6 +256,7 @@ class testRectangle_height(unittest.TestCase):
     def test_zero_height(self):
         with self.assertRaisesRegex(ValueError, "height must be > 0"):
             Rectangle(1, 0)
+
 
 class testRectangle_x(unittest.TestCase):
     """ Unittest to test initialization of the rectangle x attr"""
@@ -326,6 +329,7 @@ class testRectangle_x(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "x must be >= 0"):
             Rectangle(5, 3, -1, 0)
 
+
 class testRectangle_y(unittest.TestCase):
     """ Unittest to test initialization of the rectangle y attr"""
 
@@ -393,6 +397,7 @@ class testRectangle_y(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "y must be >= 0"):
             Rectangle(3, 5, 0, -1)
 
+
 class testRectangle_order_of_initialization(unittest.TestCase):
     """ Unittest for testing initialization for the rectangle order of attr """
 
@@ -420,6 +425,7 @@ class testRectangle_order_of_initialization(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Rectangle(1, 2, "invalid x", "invalid y")
 
+
 class testRectangle_area(unittest.TestCase):
     """ Unittest to test the area method of the rectangle class """
 
@@ -441,6 +447,7 @@ class testRectangle_area(unittest.TestCase):
         r = Rectangle(2, 10, 1, 1, 1)
         with self.assertRaises(TypeError):
             r.area(1)
+
 
 class TestRectangle_stdout(unittest.TestCase):
     """ Unittest to test __str__ and display methods of the rectangle class """
@@ -525,6 +532,7 @@ class TestRectangle_stdout(unittest.TestCase):
         r = Rectangle(5, 1, 2, 4, 7)
         with self.assertRaises(TypeError):
             r.display(1)
+
 
 class testRectangle_update_args(unittest.TestCase):
     """ Unittest to test updating args method of the rectangle class """
@@ -663,6 +671,7 @@ class testRectangle_update_args(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
             r.update(89, 1, 2, "invalid", "invalid")
 
+
 class testRectangle_update_kwargs(unittest.TestCase):
     """ Unittest to test updating kwargs method of the rectangle class """
 
@@ -774,6 +783,7 @@ class testRectangle_update_kwargs(unittest.TestCase):
         r.update(height=5, id=89, a=1, b=54, x=19, y=7)
         self.assertEqual("[Rectangle] (89) 19/7 - 10/5", str(r))
 
+
 class testRectangle_to_dictionary(unittest.TestCase):
     """ Unittest for testing the to_dictionary method of the rectangle class """
 
@@ -792,6 +802,7 @@ class testRectangle_to_dictionary(unittest.TestCase):
         r = Rectangle(10, 2, 4, 1, 2)
         with self.assertRaises(TypeError):
             r.to_dictionary(1)
+
 
 if __name__ == "__main__":
     unittest.main()
