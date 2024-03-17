@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Printing the state object with the name passed as argument from the database """
+""" Printing the state object with the name passed as arg from the db """
 import sys
 from model_state import Base, State
 from sqlalchemy import (create_engine)
